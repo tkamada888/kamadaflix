@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PageDefault from '../../../../components/PageDefault'
-import FormField from '../../../FormField';
+import FormField from '../../../FormField'
+import Button from '../../../Button'
 
 function CadastroCategoria() {
   const valoresIniciais = {
     nome: '',
     descricao: '',
-    cor: ''
-  }
+    cor: '',
+  };
   const [categorias, setCategorias] = useState([]);
   const [values, setValues] = useState(valoresIniciais);
 
@@ -16,17 +17,13 @@ function CadastroCategoria() {
     setValues({
       ...values,
       [chave]: valor,
-    })
+    });
   }
 
-  function handleChange(infosDoEvento) {
-    // const { getAttribute, value } = infosDoEvento.target;
-    setValue(
-      infosDoEvento.target.getAttribute('name'),
-      infosDoEvento.target.value
-      // getAttribute('name'),
-      // value
-    );
+  function handleChange(evento) {
+    const { value } = evento.target;
+    const key = evento.target.getAttribute('name');
+    setValue(key, value);
   }
 
   return (
